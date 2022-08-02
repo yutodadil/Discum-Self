@@ -16,10 +16,13 @@ bot = discum.Client(token='AltToken Here', log=False)
 
 t = "MainTokenHere"
 
-trigger = "AltToken Prehix Here"
+trigger = "AltToken Prehix Here, e.x: s!"
 
-prefix = "MainToken Prefix Here"
+prefix = "MainToken Prefix Here, e.x: s2!"
 
+owner = "Your main Name and Tag Here, e.x: Yourname#0000"
+
+botuser = "Your Alt Name Here, e.x: YourAltName"
 image = ImageCaptcha(fonts=['/path/C.ttf', 'path/C.ttf'])
 
 bot2 = commands.Bot(command_prefix=prefix,
@@ -1345,9 +1348,12 @@ def test(resp):
             time.sleep(Random)
             bot.sendMessage(message['channel_id'], f'```ini\n[ {trigger}help ] - Show This Message\n[ {trigger}おみくじ ] - おみくじをします。\n[ {trigger}コイントス ] - コイントスをします。\n[ {trigger}おすすめ ] - Mirrativ apiから非ログインユーザー向けのおすすめが配信を取得し、結果をtxtとして送ります。\n[ {trigger}invite ] - 2～4文字のInviteをBruteforceで1つ出します。```')
         elif message['content'] == f'{trigger}self':
-            bot.sendMessage(message['channel_id'], 'Starting...')
-            bot2.run(t, bot=False)
-            bot.sendMessage(message['channel_id'], 'Started Your Selfbot!!')
+            if message['author']['username'] + "#" + message['author']['discriminator'] == owner:
+                bot.sendMessage(message['channel_id'], 'Starting...')
+                bot2.run(t, bot=False)
+                bot.sendMessage(message['channel_id'], 'Started Your Selfbot!!')
+            else:
+                bot.sendMessage(message['channel_id'], 'You Not Allow Run This Commands.\n**403 Forbidden**')
         elif message['content'] == f'{trigger}invite':
             Random = random.uniform(0, 7)
             time.sleep(Random)
@@ -1379,7 +1385,7 @@ def test(resp):
                 Random = random.uniform(0, 7)
                 time.sleep(Random)
                 bot.sendMessage(message['channel_id'], 'その様なコマンドはありません、もう一度よくお確かめの上実行してください。')
-            if message['author']['username'] == (f'Abvoo'):
+            if message['author']['username'] == botuser:
                 Random = random.uniform(0, 7)
                 time.sleep(Random)
                 print("botが何かに返信しました。")
