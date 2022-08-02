@@ -285,7 +285,7 @@ print("Loading Commands. 3/15")
 
 @bot2.command()
 async def キャプチャ(ctx, moji):
-  image = ImageCaptcha(fonts=['C://Users/gigay/Desktop/Tmp Programs/CapGen/path/C.ttf', 'C://Users/gigay/Desktop/Tmp Programs/CapGen/path/C.ttf'])
+  image = ImageCaptcha(fonts=['./path/C.ttf', './path/C.ttf'])
   await ctx.message.delete()
   print(f"{Fore.GREEN}succefully MsgDel")
   data = image.generate(f'{moji}')
@@ -380,7 +380,7 @@ async def 配信履歴(ctx, uid):
 
 @bot2.command()
 async def キャプチャ2(ctx, moji, font):
-  image = ImageCaptcha(fonts=[f'C://Users/gigay/Desktop/Tmp Programs/CapGen/path/{font}.ttf', f'C://Users/gigay/Desktop/Tmp Programs/CapGen/path/{font}.ttf'])
+  image = ImageCaptcha(fonts=[f'./{font}.ttf', f'./{font}.ttf'])
   await ctx.message.delete()
   print(f"{Fore.GREEN}succefully MsgDel")
   data = image.generate(f'{moji}')
