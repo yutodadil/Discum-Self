@@ -25,6 +25,8 @@ owner = "Your main Name and Tag Here, e.x: Yourname#0000"
 botuser = "Your Alt Name Here, e.x: YourAltName"
 image = ImageCaptcha(fonts=['/path/C.ttf', 'path/C.ttf'])
 
+start = 0
+
 bot2 = commands.Bot(command_prefix=prefix,
                    help_command=None,
                    case_insensitive=True,
@@ -1321,6 +1323,7 @@ print("Loading Commands. 15/15")
 
 @bot.gateway.command
 def test(resp):
+    global start
     if resp.event.message:
         message = resp.parsed.auto()
         if message['content'] == f'{trigger}おみくじ':
@@ -1349,11 +1352,14 @@ def test(resp):
             bot.sendMessage(message['channel_id'], f'```ini\n[ {trigger}help ] - Show This Message\n[ {trigger}おみくじ ] - おみくじをします。\n[ {trigger}コイントス ] - コイントスをします。\n[ {trigger}おすすめ ] - Mirrativ apiから非ログインユーザー向けのおすすめが配信を取得し、結果をtxtとして送ります。\n[ {trigger}invite ] - 2～4文字のInviteをBruteforceで1つ出します。```')
         elif message['content'] == f'{trigger}self':
             if message['author']['username'] + "#" + message['author']['discriminator'] == owner:
-                bot.sendMessage(message['channel_id'], 'Starting...')
-                bot2.run(t, bot=False)
-                bot.sendMessage(message['channel_id'], 'Started Your Selfbot!!')
-            else:
-                bot.sendMessage(message['channel_id'], 'You Not Allow Run This Commands.\n**403 Forbidden**')
+                if start == 0:
+                    bot.sendMessage(message['channel_id'], 'Starting...')
+                    start += 1
+                    bot2.run(t, bot=False)
+                elif start == 1:
+                    bot.sendMessage(message['channel_id'], 'Selfbot is already Running!')
+                else:
+                    bot.sendMessage(message['channel_id'], 'something wrong...')
         elif message['content'] == f'{trigger}invite':
             Random = random.uniform(0, 7)
             time.sleep(Random)
