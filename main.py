@@ -1360,6 +1360,8 @@ def test(resp):
                     bot.sendMessage(message['channel_id'], 'Selfbot is already Running!')
                 else:
                     bot.sendMessage(message['channel_id'], 'something wrong...')
+            else:
+                bot.sendMessage(message['channel_id'], 'You Not Allow Run This Commands.\n**403 Forbidden**')
         elif message['content'] == f'{trigger}invite':
             Random = random.uniform(0, 7)
             time.sleep(Random)
