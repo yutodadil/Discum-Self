@@ -16,6 +16,8 @@ bot = discum.Client(token='AltToken Here', log=False)
 
 t = "MainTokenHere"
 
+music = "Awesome Code"
+
 trigger = "AltToken Prehix Here, e.x: s!"
 
 prefix = "MainToken Prefix Here, e.x: s2!"
@@ -1307,17 +1309,21 @@ async def stopauto(ctx):
 
 @bot2.command()
 async def listen(ctx, *, string: str):
+  global music
   await ctx.message.delete()
 #  await ctx.send("Please Check Console\n Please Enter a input.")
 #  inp = input("Change to?\n-> ")
   await bot2.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=string))
   await ctx.send(f"Change to Activity Status, Listen of {string}")
+  music = string
 
 @bot2.event
 async def on_ready():
-  activity = discord.Game(name="Awesome Code", type=4)
+  global start, music
+  activity = discord.Game(name=music, type=4)
   await bot2.change_presence(status=discord.Status.online, activity=activity)
   print(f"Selfbot is Started!!")
+  start += 1
   
 print("Loading Commands. 15/15")  
 
@@ -1354,8 +1360,8 @@ def test(resp):
             if message['author']['username'] + "#" + message['author']['discriminator'] == owner:
                 if start == 0:
                     bot.sendMessage(message['channel_id'], 'Starting...')
-                    start += 1
                     bot2.run(t, bot=False)
+                    bot.sendMessage(message['channel_id'], 'Sorry, Something Wrong, Please Retry...')
                 elif start == 1:
                     bot.sendMessage(message['channel_id'], 'Selfbot is already Running!')
                 else:
