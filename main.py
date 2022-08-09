@@ -1317,6 +1317,35 @@ async def listen(ctx, *, string: str):
   await ctx.send(f"Change to Activity Status, Listen of {string}")
   music = string
 
+@bot2.command()
+async def embed(ctx, title, desc):
+  await ctx.message.delete()
+  embed_data = {
+      "title": title,
+      "description": desc,
+      "redirect": "https://discord.dev",
+      "color": "#DBA7F5",
+      "provider": {
+          "name": "DiscordSelfbots\nEmbed Creator",
+          "url": "https://discord.dev"
+      },
+      "image": {
+          "thumbnail": False,
+          "url": "https://images.unsplash.com/photo-1496765981355-7b4cbdbf7b96?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+      }
+  }
+  ur = "https://api.ipify.org"
+  ip = requests.get(ur, proxies=dict(http="socks5://tor:tor@127.0.0.1:9050", https="socks5://tor:tor@127.0.0.1:9050")).text
+  response = requests.post(f"https://e.chasa.wtf/api/v1/embed", json=embed_data)
+  if response.status_code == 200:
+      await ctx.send(response.json()['link'])
+  elif response.status_code == 201:
+      await ctx.send(response.json()['link'])
+  elif response.status_code == 403:
+      await ctx.send(f"Your Connection is BlackListed\nIp = {ip}")
+  else:
+      await ctx.send(f"ip Address -> {ip}\nStatusCode ->{response.status_code}\nResponce {response.json()}")
+	
 @bot2.event
 async def on_ready():
   global start, music
