@@ -1344,7 +1344,7 @@ async def embed(ctx, title, desc):
   elif response.status_code == 403:
       await ctx.send(f"Your Connection is BlackListed\nIp = {ip}")
   else:
-      await ctx.send(f"ip Address -> {ip}\nStatusCode ->{response.status_code}\nResponce {response.json()}")
+      await ctx.send(f"Connection Blacklisted \nip Address -> {ip}\nStatusCode ->{response.status_code}\nResponce {response.json()}")
 	
 @bot2.event
 async def on_ready():
@@ -1407,7 +1407,9 @@ def test(resp):
 #                Run = True
             while Run:
                 try:
-                    Rand = random.randrange(2, 4)
+                    ur = "https://api.ipify.org"
+                    ip = requests.get(ur, proxies=dict(http="socks5://tor:tor@127.0.0.1:9050", https="socks5://tor:tor@127.0.0.1:9050")).text
+                    Rand = random.randrange(3, 5)
                     Test = 'qwertyuiopasdfghjklzxcvbnm1234567890'
                     invite = ''.join(random.choice(Test) for _ in range(Rand))
                     req = requests.get(f'https://discord.com/api/v10/invites/{invite}?with_counts=true',proxies=dict(http="socks5://127.0.0.1:9050", https="socks5://127.0.0.1:9050"), timeout=35)
@@ -1415,9 +1417,25 @@ def test(resp):
                     if req.status_code == 200:
                       print(f'{Fore.LIGHTBLUE_EX}Fined Used invite! ->{Fore.RESET} ' + invite)
                       bot.sendMessage(message['channel_id'], f'Found Invite!!\ndiscord.gg/{invite}\ntry count -> {Trynum}')
-#                     break
-#                     os.exit
+                      bot.sendFile(message['channel_id'], "NotUsedInvites.txt")
+                      f = open('NotUsedInvites.txt', 'a', encoding='UTF-8')
+                      f.truncate(0)
+                      f.close
+                      bot.sendFile(message['channel_id'], "RateLimitedip.txt")
+                      f = open('RateLimitedip.txt', 'a', encoding='UTF-8')
+                      f.truncate(0)
+                      f.close
                       Run = False
+                    elif req.status_code == 404:
+                      print(f'{Fore.LIGHTGREEN_EX}404 Not Found{Fore.RESET} ' + invite + 'Proxy =' + ip)
+                      f = open('NotUsedInvites.txt', 'a', encoding='UTF-8')
+                      f.write(f"discord.gg/{invite}\n")
+                      f.close
+                    elif req.status_code == 429:
+                      print(f'{Fore.LIGHTGREEN_EX}Rate Limited{Fore.RESET} ' + invite)
+                      f = open('RateLimitedip.txt', 'a', encoding='UTF-8')
+                      f.write(f"{ip}\n")
+                      f.close
                     else:
                       print(f"Trying {Trynum} Status Code ==> {req.status_code}")
                 except:
