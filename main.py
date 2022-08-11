@@ -299,7 +299,7 @@ async def AntiWick(ctx, NextGen):
  elif NextGen == "help":
      await ctx.send(f"""Usage {prefix}AntoWick 1 or 0
 1 = True NextGeneration AntiWick Option.
-0 = False NextGeneration AntiWick Optionn.""")
+0 = False NextGeneration AntiWick Option.""")
  else:
      await ctx.send(f"""Usage {prefix}AntoWick 1 or 0
 1 = True NextGeneration AntiWick Option.
