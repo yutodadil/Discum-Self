@@ -58,6 +58,54 @@ turn = 0
 
 msg = round(turn * 20)
 
+def get_random_unicode(length):
+
+    try:
+        get_char = unichr
+    except NameError:
+        get_char = chr
+
+    # Update this to include code point ranges to be sampled
+    include_ranges = [
+        ( 0x0000, 0xFFFF ),
+        ( 0x0000, 0xFFFF ),
+        ( 0x0000, 0xFFFF ),
+        ( 0x0000, 0xFFFF ),
+        ( 0x0000, 0xFFFF ),
+        ( 0x0000, 0xFFFF ),
+        ( 0x0000, 0xFFFF ),
+        ( 0x0000, 0xFFFF ),
+        ( 0x0000, 0xFFFF ),
+        ( 0x0000, 0xFFFF ),
+        ( 0x0000, 0xFFFF ),
+        ( 0x0000, 0xFFFF ),
+        ( 0x0000, 0xFFFF ),
+        ( 0x0000, 0xFFFF ),
+        ( 0x0000, 0xFFFF ),
+        ( 0x0000, 0xFFFF ),
+        ( 0x0000, 0xFFFF ),
+        ( 0x0000, 0xFFFF ),
+        ( 0x0000, 0xFFFF ),
+        ( 0x0000, 0xFFFF ),
+        ( 0x0000, 0xFFFF ),
+        ( 0x0000, 0xFFFF ),
+        ( 0x0000, 0xFFFF ),
+        ( 0x0000, 0xFFFF ),
+        ( 0x0000, 0xFFFF ),
+        ( 0x0000, 0xFFFF ),
+        ( 0x0000, 0xFFFF ),
+        ( 0x0000, 0xFFFF ),
+        ( 0x0000, 0xFFFF ),
+        ( 0x0000, 0xFFFF )
+    ]
+
+    alphabet = [
+        get_char(code_point) for current_range in include_ranges
+            for code_point in range(current_range[0], current_range[1] + 1)
+    ]
+    return ''.join(random.choice(alphabet) for i in range(length))
+# Thanks for StacksOverFlow
+
 @bot2.command()
 async def help(ctx):
   await ctx.message.delete()
@@ -148,97 +196,114 @@ async def automsg1(ctx):
 print("Loading Commands. 1/15")
 
 @bot2.command(pass_context=True)
-async def AntiWick(ctx):
-	await ctx.message.delete()
-	await ctx.send('autoMassage Sender is now **enabled**!')
-	global dmcs
-	global sent
-	global turn
-	dmcs = True
-	while dmcs:
-		async with ctx.typing():
-			print(f"{Fore.WHITE}<-------------------------------------------------------------------->")
-			print(f"{Fore.GREEN}いまなんしゅ～め?: %s{Fore.WHITE}" % turn)
-			print(f"{Fore.GREEN}いまだいたいなんめっせーじ?: %s{Fore.WHITE}" % msg)
-			print(f"{Fore.WHITE}<-------------------------------------------------------------------->")
-			await asyncio.sleep(Random)
-			await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(Test2)))
-			print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
-			sent += 1
-			await asyncio.sleep(Random)
-			await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(Test3)))
-			print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
-			sent += 1
-			await asyncio.sleep(Random)
-			await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(Test4)))
-			print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
-			sent += 1
-			await asyncio.sleep(Random)
-			await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(Test6)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(Test5)))
-			print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
-			sent += 1
-			await asyncio.sleep(Random)
-			await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(random.randrange(1, 15, 2))))
-			print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
-			sent += 1
-			await asyncio.sleep(Random)
-			await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(random.randrange(5, 12, 2))))
-			print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
-			sent += 1
-			await asyncio.sleep(Random)
-			await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(random.randrange(3, 6, 2))))
-			print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
-			sent += 1
-			await asyncio.sleep(Random)
-			await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(random.randrange(6, 15, 2))))
-			print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
-			sent += 1
-			await asyncio.sleep(Random)
-			await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(random.randrange(2, 4, 2))))
-			print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
-			sent += 1
-			await asyncio.sleep(Random)
-			await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(Test6)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(Test5)))
-			print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
-			sent += 1
-			await asyncio.sleep(Random)
-			await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(Test3)))
-			print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
-			sent += 1
-			await asyncio.sleep(Random)
-			await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(Test4)))
-			print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
-			sent += 1
-			await asyncio.sleep(Random)
-			await ctx.send(''.join(random.choice(string.ascii_letters + string.digits) for _ in range(12)) + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(Test5)))
-			print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
-			sent += 1
-			await asyncio.sleep(Random)
-			await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(random.randrange(1, 15, 2))))
-			print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
-			sent += 1
-			await asyncio.sleep(Random)
-			await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(random.randrange(5, 12, 2))))
-			print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
-			sent += 1
-			await asyncio.sleep(Random)
-			await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(random.randrange(3, 6, 2))))
-			print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
-			sent += 1
-			await asyncio.sleep(Random)
-			await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(random.randrange(6, 15, 2))))
-			print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
-			sent += 1
-			await asyncio.sleep(Random)
-			await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(random.randrange(2, 4, 2))))
-			print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
-			sent += 1
-			await asyncio.sleep(Random)
-			await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(Test6)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(Test5)))
-			print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
-			sent += 1
-			turn += 1
-			await asyncio.sleep(Random)
+async def AntiWick(ctx, NextGen):
+ await ctx.message.delete()
+ if NextGen == "0":
+     await ctx.send('autoMassage Sender is now **enabled**!')
+     global dmcs
+     global sent
+     global turn
+     dmcs = True
+     while dmcs:
+      async with ctx.typing():
+       print(f"{Fore.WHITE}<-------------------------------------------------------------------->")
+       print(f"{Fore.GREEN}いまなんしゅ～め?: %s{Fore.WHITE}" % turn)
+       print(f"{Fore.GREEN}いまだいたいなんめっせーじ?: %s{Fore.WHITE}" % msg)
+       print(f"{Fore.WHITE}<-------------------------------------------------------------------->")
+       await asyncio.sleep(Random)
+       await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(Test2)))
+       print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
+       sent += 1
+       await asyncio.sleep(Random)
+       await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(Test3)))
+       print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
+       sent += 1
+       await asyncio.sleep(Random)
+       await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(Test4)))
+       print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
+       sent += 1
+       await asyncio.sleep(Random)
+       await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(Test6)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(Test5)))
+       print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
+       sent += 1
+       await asyncio.sleep(Random)
+       await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(random.randrange(1, 15, 2))))
+       print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
+       sent += 1
+       await asyncio.sleep(Random)
+       await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(random.randrange(5, 12, 2))))
+       print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
+       sent += 1
+       await asyncio.sleep(Random)
+       await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(random.randrange(3, 6, 2))))
+       print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
+       sent += 1
+       await asyncio.sleep(Random)
+       await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(random.randrange(6, 15, 2))))
+       print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
+       sent += 1
+       await asyncio.sleep(Random)
+       await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(random.randrange(2, 4, 2))))
+       print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
+       sent += 1
+       await asyncio.sleep(Random)
+       await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(Test6)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(Test5)))
+       print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
+       sent += 1
+       await asyncio.sleep(Random)
+       await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(Test3)))
+       print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
+       sent += 1
+       await asyncio.sleep(Random)
+       await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(Test4)))
+       print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
+       sent += 1
+       await asyncio.sleep(Random)
+       await ctx.send(''.join(random.choice(string.ascii_letters + string.digits) for _ in range(12)) + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(Test5)))
+       print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
+       sent += 1
+       await asyncio.sleep(Random)
+       await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(random.randrange(1, 15, 2))))
+       print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
+       sent += 1
+       await asyncio.sleep(Random)
+       await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(random.randrange(5, 12, 2))))
+       print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
+       sent += 1
+       await asyncio.sleep(Random)
+       await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(random.randrange(3, 6, 2))))
+       print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
+       sent += 1
+       await asyncio.sleep(Random)
+       await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(random.randrange(6, 15, 2))))
+       print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
+       sent += 1
+       await asyncio.sleep(Random)
+       await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length_of_string)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(random.randrange(2, 4, 2))))
+       print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
+       sent += 1
+       await asyncio.sleep(Random)
+       await ctx.send("||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(Test6)) + "||" + ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(Test5)))
+       print(f"{Fore.GREEN}succefully %s{Fore.WHITE}" % sent)
+       sent += 1
+       turn += 1
+       await asyncio.sleep(Random)
+ elif NextGen == "1":
+     dmcs = True
+     while dmcs:
+      async with ctx.typing():
+       Testa = random.randrange(1, 30, 2)
+       Randi = random.randrange(3, 7, 2)
+       await ctx.send(get_random_unicode(Testa))
+       await asyncio.sleep(Randi)
+ elif NextGen == "help":
+     await ctx.send(f"""Usage {prefix}AntoWick 1 or 0
+1 = True NextGeneration AntiWick Option.
+0 = False NextGeneration AntiWick Optionn.""")
+ else:
+     await ctx.send(f"""Usage {prefix}AntoWick 1 or 0
+1 = True NextGeneration AntiWick Option.
+0 = False NextGeneration AntiWick Optionn.""")
 
 @bot2.command(pass_context=True)
 async def probot2mode(ctx):
