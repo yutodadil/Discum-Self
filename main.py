@@ -14,7 +14,7 @@ __config__ = toml.loads(open('./config/config.toml', 'r+', encoding="UTF-8").rea
 
 bot = discum.Client(token=__config__['bot']['alttoken'], log=False)
 
-# bot.gateway.log = {"console":__config__['logging']['websocket'], "file":False}
+bot.gateway.log = {"console":__config__['logging']['websocket'], "file":False}
 
 bot.switchProxy('http://116.202.13.106:8080')
 
