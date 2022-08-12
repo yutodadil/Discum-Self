@@ -1,33 +1,30 @@
-import discum
-import random
-import requests
-import time
-import discord
-import asyncio
+import discum, random, requests, time, discord, asyncio, toml
 from discord.ext import commands
 from colorama import Fore
 from itertools import count, cycle, repeat
-import colorama, random, string, time, asyncio, requests, sys, threading, datetime, json, aiohttp, datetime, os, socket, subprocess, base64, codecs, smtplib, re
+import colorama, random, string, time, asyncio, requests, sys, threading, datetime, json, aiohttp, datetime, os, socket, subprocess, base64, codecs, smtplib, re, lxml
 import urllib.request, urllib.error
 from bs4 import BeautifulSoup
 from pypresence import Presence
 from captcha.image import ImageCaptcha
-bot = discum.Client(token='AltToken Here', log=False)
+from discum.utils.embed import Embedder
+import numpy as np
 
-t = "MainTokenHere"
+__config__ = toml.loads(open('./config/config.toml', 'r+', encoding="UTF-8").read())
 
-music = "Awesome Code"
+bot = discum.Client(token=__config__['bot']['alttoken'], log=False)
 
-trigger = "AltToken Prehix Here, e.x: s!"
+# bot.gateway.log = {"console":__config__['logging']['websocket'], "file":False}
 
-prefix = "MainToken Prefix Here, e.x: s2!"
+bot.switchProxy('http://116.202.13.106:8080')
 
-owner = "Your main Name and Tag Here, e.x: Yourname#0000"
+t = __config__['bot']['maintoken']
 
-botuser = "Your Alt Name Here, e.x: YourAltName"
-image = ImageCaptcha(fonts=['/path/C.ttf', 'path/C.ttf'])
+image = ImageCaptcha(fonts=['./C.ttf', './C.ttf'])
 
-start = 0
+prefix = __config__['bot']['mainprefix']
+
+# owner = __config__['bot']['owner']
 
 bot2 = commands.Bot(command_prefix=prefix,
                    help_command=None,
@@ -43,6 +40,8 @@ Test3 = 5
 Test4 = 12
 
 Test5 = 2
+
+start = 0
 
 Test6 = random.randrange(1, 30, 2)
 
@@ -301,9 +300,7 @@ async def AntiWick(ctx, NextGen):
 1 = True NextGeneration AntiWick Option.
 0 = False NextGeneration AntiWick Option.""")
  else:
-     await ctx.send(f"""Usage {prefix}AntoWick 1 or 0
-1 = True NextGeneration AntiWick Option.
-0 = False NextGeneration AntiWick Optionn.""")
+     await ctx.send("Something wrong, Please Check a Code...")
 
 @bot2.command(pass_context=True)
 async def probot2mode(ctx):
@@ -354,7 +351,7 @@ print("Loading Commands. 3/15")
 
 @bot2.command()
 async def キャプチャ(ctx, moji):
-  image = ImageCaptcha(fonts=['./path/C.ttf', './path/C.ttf'])
+  image = ImageCaptcha(fonts=['./C.ttf', './C.ttf'])
   await ctx.message.delete()
   print(f"{Fore.GREEN}succefully MsgDel")
   data = image.generate(f'{moji}')
@@ -557,17 +554,17 @@ print("Loading Commands. 9/15")
 
 @bot2.command()
 async def なう(ctx):
+    await ctx.message.delete()
     dt = datetime.datetime.today()
-    await ctx.send(f"{dt.year}:{dt.month}:{dt.day}:{dt.hour}:{dt.minute}:{dt.second}.{dt.microsecond}")
     await asyncio.sleep(15)
     print(f"{Fore.RED}<---------------------------------------->")
     print(f"{Fore.GREEN}succefully Now")
     print(f"{Fore.GREEN}Command Runner is | {ctx.author}")
     print(f"{Fore.RED}<---------------------------------------->")
-    await ctx.message.delete()
 
 @bot2.command()
 async def Now(ctx):
+    await ctx.message.delete()
     dt = datetime.datetime.today()
     await ctx.send(f"{dt.year}:{dt.month}:{dt.day}:{dt.hour}:{dt.minute}:{dt.second}.{dt.microsecond}")
     await asyncio.sleep(15)
@@ -575,12 +572,12 @@ async def Now(ctx):
     print(f"{Fore.GREEN}succefully Now")
     print(f"{Fore.GREEN}Command Runner is | {ctx.author}")
     print(f"{Fore.RED}<---------------------------------------->")
-    await ctx.message.delete()
 
 print("Loading Commands. 10/15")
 
 @bot2.command()
 async def 時刻(ctx):
+    await ctx.message.delete()
     dt = datetime.datetime.today()
     await ctx.send(f"{dt.year}:{dt.month}:{dt.day}:{dt.hour}:{dt.minute}:{dt.second}.{dt.microsecond}")
     await asyncio.sleep(15)
@@ -588,10 +585,10 @@ async def 時刻(ctx):
     print(f"{Fore.GREEN}succefully Now")
     print(f"{Fore.GREEN}Command Runner is | {ctx.author}")
     print(f"{Fore.RED}<---------------------------------------->")
-    await ctx.message.delete()
 
 @bot2.command()
 async def 現在時刻(ctx):
+    await ctx.message.delete()
     dt = datetime.datetime.today()
     await ctx.send(f"{dt.year}:{dt.month}:{dt.day}:{dt.hour}:{dt.minute}:{dt.second}.{dt.microsecond}")
     await asyncio.sleep(15)
@@ -599,10 +596,10 @@ async def 現在時刻(ctx):
     print(f"{Fore.GREEN}succefully Now")
     print(f"{Fore.GREEN}Command Runner is | {ctx.author}")
     print(f"{Fore.RED}<---------------------------------------->")
-    await ctx.message.delete()
 
 @bot2.command()
 async def ナウ(ctx):
+    await ctx.message.delete()
     dt = datetime.datetime.today()
     await ctx.send(f"{dt.year}:{dt.month}:{dt.day}:{dt.hour}:{dt.minute}:{dt.second}.{dt.microsecond}")
     await asyncio.sleep(15)
@@ -610,10 +607,10 @@ async def ナウ(ctx):
     print(f"{Fore.GREEN}succefully Now")
     print(f"{Fore.GREEN}Command Runner is | {ctx.author}")
     print(f"{Fore.RED}<---------------------------------------->")
-    await ctx.message.delete()
 
 @bot2.command()
 async def NowTime(ctx):
+    await ctx.message.delete()
     dt = datetime.datetime.today()
     await ctx.send(f"{dt.year}:{dt.month}:{dt.day}:{dt.hour}:{dt.minute}:{dt.second}.{dt.microsecond}")
     await asyncio.sleep(15)
@@ -621,7 +618,6 @@ async def NowTime(ctx):
     print(f"{Fore.GREEN}succefully Now")
     print(f"{Fore.GREEN}Command Runner is | {ctx.author}")
     print(f"{Fore.RED}<---------------------------------------->")
-    await ctx.message.delete()
 
 print("Loading Commands. 11/15")
 
@@ -1372,6 +1368,8 @@ async def stopauto(ctx):
 	sent = 1
 	turn = 0
 
+music = __config__['setup']['default']
+
 @bot2.command()
 async def listen(ctx, *, string: str):
   global music
@@ -1409,8 +1407,8 @@ async def embed(ctx, title, desc):
   elif response.status_code == 403:
       await ctx.send(f"Your Connection is BlackListed\nIp = {ip}")
   else:
-      await ctx.send(f"Connection Blacklisted \nip Address -> {ip}\nStatusCode ->{response.status_code}\nResponce {response.json()}")
-	
+      await ctx.send(f"ip Address -> {ip}\nStatusCode ->{response.status_code}\nResponce {response.json()}")
+
 @bot2.event
 async def on_ready():
   global start, music
@@ -1418,9 +1416,8 @@ async def on_ready():
   await bot2.change_presence(status=discord.Status.online, activity=activity)
   print(f"Selfbot is Started!!")
   start += 1
-  
-print("Loading Commands. 15/15")  
 
+trigger = __config__['bot']['altprefix']
 @bot.gateway.command
 def test(resp):
     global start
@@ -1429,7 +1426,11 @@ def test(resp):
         if message['content'] == f'{trigger}おみくじ':
             Random = random.uniform(0, 7)
             time.sleep(Random)
-            ttt = random.choice(result)
+            p=[8.92, 15.63, 13.36, 13.78, 5.32, 7.31, 2.37]
+            p = np.array(p)
+            p /= p.sum()
+            ttt = np.random.choice(["大吉", "中吉", "小吉", "吉", "末吉", "凶", "大凶"], p=p)
+#            ttt = random.choice(result)
             bot.sendMessage(message['channel_id'], f'{ttt}')
         elif message['content'] == f'{trigger}コイントス':
             Random = random.uniform(0, 7)
@@ -1449,11 +1450,12 @@ def test(resp):
         elif message['content'] == f'{trigger}help':
             Random = random.uniform(0, 7)
             time.sleep(Random)
-            bot.sendMessage(message['channel_id'], f'```ini\n[ {trigger}help ] - Show This Message\n[ {trigger}おみくじ ] - おみくじをします。\n[ {trigger}コイントス ] - コイントスをします。\n[ {trigger}おすすめ ] - Mirrativ apiから非ログインユーザー向けのおすすめが配信を取得し、結果をtxtとして送ります。\n[ {trigger}invite ] - 2～4文字のInviteをBruteforceで1つ出します。```')
+            bot.sendMessage(message['channel_id'], f'```ini\n[ {trigger}help ] - Show This Message\n[ {trigger}おみくじ ] - おみくじをします。\n[ {trigger}コイントス ] - コイントスをします。\n[ {trigger}おすすめ ] - Mirrativ apiから非ログインユーザー向けのおすすめが配信を取得し、結果をtxtとして送ります。\n[ {trigger}invite ] - 3～5文字のInviteをBruteforceで1つ出します。```')
         elif message['content'] == f'{trigger}self':
-            if message['author']['username'] + "#" + message['author']['discriminator'] == owner:
+            if message['author']['username'] + "#" + message['author']['discriminator'] == f"{__config__['bot']['owner']}":
                 if start == 0:
                     bot.sendMessage(message['channel_id'], 'Starting...')
+#                    start += 1
                     bot2.run(t, bot=False)
                     bot.sendMessage(message['channel_id'], 'Sorry, Something Wrong, Please Retry...')
                 elif start == 1:
@@ -1462,6 +1464,7 @@ def test(resp):
                     bot.sendMessage(message['channel_id'], 'something wrong...')
             else:
                 bot.sendMessage(message['channel_id'], 'You Not Allow Run This Commands.\n**403 Forbidden**')
+                bot.sendMessage(message['channel_id'], f'This Command is White Listed.\n WhiteListed Accont = ' + __config__['bot']['owner'])
         elif message['content'] == f'{trigger}invite':
             Random = random.uniform(0, 7)
             time.sleep(Random)
@@ -1492,7 +1495,7 @@ def test(resp):
                       f.close
                       Run = False
                     elif req.status_code == 404:
-                      print(f'{Fore.LIGHTGREEN_EX}404 Not Found{Fore.RESET} ' + invite + 'Proxy =' + ip)
+                      print(f'{Fore.LIGHTGREEN_EX}404 Not Found{Fore.RESET} ' + invite + ' Proxy = ' + ip)
                       f = open('NotUsedInvites.txt', 'a', encoding='UTF-8')
                       f.write(f"discord.gg/{invite}\n")
                       f.close
@@ -1511,7 +1514,7 @@ def test(resp):
                 Random = random.uniform(0, 7)
                 time.sleep(Random)
                 bot.sendMessage(message['channel_id'], 'その様なコマンドはありません、もう一度よくお確かめの上実行してください。')
-            if message['author']['username'] == botuser:
+            if message['author']['username'] == __config__['bot']['botname']:
                 Random = random.uniform(0, 7)
                 time.sleep(Random)
                 print("botが何かに返信しました。")
