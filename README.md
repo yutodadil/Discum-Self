@@ -9,4 +9,4 @@
 [ {prefix}invite ] - 2～4文字のInviteをBruteforceで1つ出します。
 (Hidden Commands)[ {prefix}self ] - Selfbot(https://github.com/yutodadil/DiscordSelfbot)を実行します
 ```
-## main.pyの中身を書き換えてコマンドの追加やSetupをしてください。
+## config/config.tomlの中身を書き換えてコマンドの追加やSetupをしてください。
