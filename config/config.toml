@@ -6,5 +6,8 @@ mainprefix = "au?"
 owner = "Main Name Here e.x:YourName#0000"
 botname = "Alt Token Name Here e.x:Iambot"
 
+[logging]
+websocket = false
+
 [setup]
 default = "Awesome Code"
