@@ -19,19 +19,13 @@ bot.gateway.log = {"console":__config__['logging']['websocket'], "file":False}
 
 bot.setLocale("ja-JP")
 
-bot.switchProxy('http://ashtonnnnn:v7J2Vzm5OF7jtjZi_session-2vqU2kFP@proxy.packetstream.io:31112')
-
 t = __config__['bot']['maintoken']
 
-image = ImageCaptcha(fonts=['C://Users/gigay/Desktop/Tmp Programs/CapGen/path/C.ttf', 'C://Users/gigay/Desktop/Tmp Programs/CapGen/path/C.ttf'])
+image = ImageCaptcha(fonts=['./C.ttf', './C.ttf'])
 
 prefix = __config__['bot']['mainprefix']
 
-# connector = ProxyConnector.from_url('socks5://50.116.14.201:7497')
-
 connector = ProxyConnector.from_url('socks5://tor:tor@127.0.0.1:9050')
-
-# connector = ProxyConnector.from_url('http://135.181.142.54:3127')
 
 # owner = __config__['bot']['owner']
 
@@ -377,7 +371,7 @@ print("Loading Commands. 3/15")
 
 @bot2.command()
 async def キャプチャ(ctx, moji):
-  image = ImageCaptcha(fonts=['C://Users/gigay/Desktop/Tmp Programs/CapGen/path/C.ttf', 'C://Users/gigay/Desktop/Tmp Programs/CapGen/path/C.ttf'])
+  image = ImageCaptcha(fonts=['./path/C.ttf', './C.ttf'])
   await ctx.message.delete()
   print(f"{Fore.GREEN}succefully MsgDel")
   data = image.generate(f'{moji}')
@@ -472,7 +466,7 @@ async def 配信履歴(ctx, uid):
 
 @bot2.command()
 async def キャプチャ2(ctx, moji, font):
-  image = ImageCaptcha(fonts=[f'C://Users/gigay/Desktop/Tmp Programs/CapGen/path/{font}.ttf', f'C://Users/gigay/Desktop/Tmp Programs/CapGen/path/{font}.ttf'])
+  image = ImageCaptcha(fonts=[f'./{font}.ttf', f'./{font}.ttf'])
   await ctx.message.delete()
   print(f"{Fore.GREEN}succefully MsgDel")
   data = image.generate(f'{moji}')
