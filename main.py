@@ -1484,7 +1484,7 @@ async def leave(ctx, svrid):
   await ctx.send(r)
 
 @bot2.command()
-async def mainbio(ctx, naiyou):
+async def mainbio(ctx, *, naiyou: str):
   await ctx.message.delete()
   dt = datetime.datetime.today()
   if len(str(dt.month)) == 1:
