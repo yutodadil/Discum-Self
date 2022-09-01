@@ -1607,7 +1607,7 @@ def test(resp):
             elif ttt == "末吉":
                 auau = random.choice(suekiti)
                 bot.sendMessage(message['channel_id'], f'{ttt}のあなたの{auau}です。')
-            elif ttt == "中吉":
+            elif ttt == "凶":
                 auau = random.choice(kyou)
                 bot.sendMessage(message['channel_id'], f'{auau}')
             elif ttt == "大凶":
