@@ -7,6 +7,6 @@
 [ {prefix]コイントス ] - コイントスをします。
 [ {prefix}おすすめ ] - Mirrativ apiから非ログインユーザー向けのおすすめが配信を取得し、結果をtxtとして送ります。
 [ {prefix}invite ] - 3～5文字のInviteをBruteforceで1つ出します。
-(Hidden Commands)[ {prefix}self ] - Selfbot(https://github.com/yutodadil/DiscordSelfbot)を実行します
+(Hidden Commands)[ {prefix}self ] - Selfbot(https://github.com/yutodadil/DiscordSelfbot)をmaintokenで実行します
 ```
 ## config/config.tomlの中身を書き換えてSetupをしてください。
