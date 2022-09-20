@@ -1830,7 +1830,17 @@ def test(resp):
                 bot.sendMessage(message['channel_id'], 'その様なコマンドはありません、もう一度よくお確かめの上実行してください。')
             if message['author']['username'] == __config__['bot']['botname']:
                 print(f"botが何かに返信しました。{Fore.WHITE}")
+            elif message['guild_id'] == "1021149292188151829":
+                channelID = message['channel_id']
+                username = message['author']['username']
+                discriminator = message['author']['discriminator']
+                content = message['content']
+                f = open('Server Chat.txt', 'a', encoding='UTF-8')
+                f.write("channel {} | {}#{}: {}\n".format(channelID, username, discriminator, content))
+                f.close
+                print("> channel {} | {}#{} | Message: {}\nLogging a Chat in Chat.txt{}".format(channelID, username, discriminator, content, Fore.WHITE))
             else:
+                dt = datetime.datetime.today()
                 Red = random.randrange(200, 250, 2)
                 Blue = random.randrange(200, 250, 2)
                 Green = random.randrange(200, 250, 2)
@@ -1840,10 +1850,18 @@ def test(resp):
                 username = message['author']['username']
                 discriminator = message['author']['discriminator']
                 content = message['content']
-                f = open('Chat.txt', 'a', encoding='UTF-8')
-                f.write("guild {} channel {} | {}#{}: {}\n".format(guildID, channelID, username, discriminator, content))
-                f.close
-                print("{}> guild {} channel {} | {}#{} | Message: {}\nLogging a Chat in Chat.txt{}".format(gurade, guildID, channelID, username, discriminator, content, Fore.WHITE))
+                new_dir_path = f'./chats/{guildID}'
+                if not os.path.exists(new_dir_path):
+                    os.mkdir(new_dir_path)
+                    f = open(f'./chats/{guildID}/{dt.year}{dt.month}{dt.day}.txt', 'a', encoding='UTF-8')
+                    f.write("guild {} channel {} | {}#{}: {}\n".format(guildID, channelID, username, discriminator, content))
+                    f.close
+                    print("{}> guild {} channel {} | {}#{} | Message: {}\nLogging a Chat in Chat.txt{}".format(gurade, guildID, channelID, username, discriminator, content, Fore.WHITE))
+                else:
+                    f = open(f'./chats/{guildID}/{dt.year}{dt.month}{dt.day}.txt', 'a', encoding='UTF-8')
+                    f.write("guild {} channel {} | {}#{}: {}\n".format(guildID, channelID, username, discriminator, content))
+                    f.close
+                    print("{}> guild {} channel {} | {}#{} | Message: {}\nLogging a Chat in Chat.txt{}".format(gurade, guildID, channelID, username, discriminator, content, Fore.WHITE))
 
 for num in count():
         bot.gateway.run()
